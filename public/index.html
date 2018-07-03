@@ -42,10 +42,10 @@
 
 				
 
-				<!-- LOOP OVER THE TODOS IN $scope.memes -->
+				<!-- LOOP OVER THE MEMES IN $scope.memes -->
 				<div class="checkbox" ng-repeat="meme in memes">
 					<label>
-						<input type="checkbox" ng-click="deleteMeme(meme._id)"> {{ meme.text }}
+						<input type="checkbox"> {{ meme.text }}
 					</label>
 				</div>
 
@@ -56,14 +56,18 @@
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE TODOS -->
+		<!-- FORM TO CREATE MEMES -->
 		<div id="meme-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="I want to buy a puppy that will love me forever" ng-model="formData.text">
+						<input type="text" ng-model="formData.origin" class="form-control input-lg" placeholder="Origin (author, site, etc.)">
+						<input type="text" ng-model="formData.date" class="form-control input-lg" placeholder="Date (approx.)">
+						<input type="text" ng-model="formData.format" class="form-control input-lg" placeholder="Format (text post, panel, analysis, etc.)">
+						<input type="text" ng-model="formData.content" class="form-control input-lg" placeholder="Image Content">
+						<input type="text" ng-model="formData.gene" class="form-control input-lg" placeholder="Genealogy (eg. loss, twitter, political)">
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createMeme()">Add</button>
