@@ -16,7 +16,7 @@ module.exports = mongoose.model('Catalogue', {
         default: ''
     },
 
-	content: {
+	img_content: {
         type: String,
         default: ''
     },
