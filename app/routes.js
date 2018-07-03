@@ -14,7 +14,7 @@ function getCatalogue(res) {
 
 module.exports = function (app) {
 
-    // api ---------------------------------------------------------------------
+    // api
     // get all memes
     app.get('/api/memes', function (req, res) {
         // use mongoose to get all memes in the database
@@ -26,7 +26,11 @@ module.exports = function (app) {
 
         // create a meme, information comes from AJAX request from Angular
         Catalogue.create({
-            text: req.body.text,
+            origin: req.body.origin,
+            date: req.body.date,
+            format: req.body.format,
+            img_content: req.body.img_content,
+            genealogy: req.body.genealogy,
             done: false
         }, function (err, meme) {
             if (err)
