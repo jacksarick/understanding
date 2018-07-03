@@ -31,12 +31,12 @@
 <body ng-controller="mainController">
 	<div class="container">
 
-		<!-- HEADER AND TODO COUNT -->
+		<!-- HEADER AND MEME COUNT -->
 		<div class="jumbotron text-center">
-			<h1>I'm a Meme-aholic <span class="label label-info">{{ memes.length }}</span></h1>
+			<h1>I understand <span class="label label-info">{{ memes.length }}</span> memes</h1>
 		</div>
 
-		<!-- TODO LIST -->
+		<!-- MEME LIST -->
 		<div id="meme-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
@@ -63,11 +63,11 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" ng-model="formData.origin" class="form-control input-lg" placeholder="Origin (author, site, etc.)">
-						<input type="text" ng-model="formData.date" class="form-control input-lg" placeholder="Date (approx.)">
-						<input type="text" ng-model="formData.format" class="form-control input-lg" placeholder="Format (text post, panel, analysis, etc.)">
-						<input type="text" ng-model="formData.img_content" class="form-control input-lg" placeholder="Image Content">
-						<input type="text" ng-model="formData.gene" class="form-control input-lg" placeholder="Genealogy (eg. loss, twitter, political)">
+						<input type="text" ng-model="formData.origin" class="form-control" placeholder="Origin (author, site, etc.)">
+						<input type="text" ng-model="formData.date" class="form-control" placeholder="Date (approx.)">
+						<input type="text" ng-model="formData.format" class="form-control" placeholder="Format (text post, panel, analysis, etc.)">
+						<input type="text" ng-model="formData.img_content" class="form-control" placeholder="Image Content">
+						<input type="text" ng-model="formData.gene" class="form-control" placeholder="Genealogy (eg. loss, twitter, political)">
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="createMeme()">Add</button>
