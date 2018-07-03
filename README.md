@@ -11,7 +11,7 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 
 ## Installation
 
-1. Clone the repository: `git clone git@github.com:scotch-io/node-todo`
+1. Clone the repository: `git clone git@github.com:scotch-io/node-meme`
 2. Install the application: `npm install`
 3. Place your own MongoDB URI in `config/database.js`
 3. Start the server: `node server.js`
@@ -22,7 +22,7 @@ Node provides the RESTful API. Angular provides the frontend and accesses the AP
 This repo corresponds to the Node Todo Tutorial Series on [scotch.io](http://scotch.io)
 
 Each branch represents a certain tutorial.
-- tut1-starter: [Creating a Single Page Todo App with Node and Angular](https://scotch.io/tutorials/creating-a-single-page-todo-app-with-node-and-angular)
+- tut1-starter: [Creating a Single Page Todo App with Node and Angular](https://scotch.io/tutorials/creating-a-single-page-meme-app-with-node-and-angular)
 - tut2-organization: [Application Organization and Structure](https://scotch.io/tutorials/node-and-angular-to-do-app-application-organization-and-structure)
 - tut3-services: [Controllers and Services](https://scotch.io/tutorials/node-and-angular-to-do-app-controllers-and-services)
 

@@ -1,52 +1,52 @@
-var Todo = require('./models/todo');
+var Catalogue = require('./models/catalogue');
 
-function getTodos(res) {
-    Todo.find(function (err, todos) {
+function getCatalogue(res) {
+    Catalogue.find(function (err, memes) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
             res.send(err);
         }
 
-        res.json(todos); // return all todos in JSON format
+        res.json(memes); // return all memes in JSON format
     });
 };
 
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function (req, res) {
-        // use mongoose to get all todos in the database
-        getTodos(res);
+    // get all memes
+    app.get('/api/memes', function (req, res) {
+        // use mongoose to get all memes in the database
+        getCatalogue(res);
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
+    // create meme and send back all memes after creation
+    app.post('/api/memes', function (req, res) {
 
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
+        // create a meme, information comes from AJAX request from Angular
+        Catalogue.create({
             text: req.body.text,
             done: false
-        }, function (err, todo) {
+        }, function (err, meme) {
             if (err)
                 res.send(err);
 
-            // get and return all the todos after you create another
-            getTodos(res);
+            // get and return all the memes after you create another
+            getCatalogue(res);
         });
 
     });
 
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
+    // delete a meme
+    app.delete('/api/memes/:meme_id', function (req, res) {
+        Catalogue.remove({
+            _id: req.params.meme_id
+        }, function (err, meme) {
             if (err)
                 res.send(err);
 
-            getTodos(res);
+            getCatalogue(res);
         });
     });
 
