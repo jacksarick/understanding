@@ -29,6 +29,7 @@ angular.module('librarian', [])
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
 						$scope.memes = data; // assign our new list of memes
+						console.log(data);
 					});
 			}
 		};
