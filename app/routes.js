@@ -30,7 +30,7 @@ module.exports = function (app) {
             date: req.body.date,
             format: req.body.format,
             img_content: req.body.img_content,
-            genealogy: req.body.genealogy,
+            gene: req.body.gene,
             done: false
         }, function (err, meme) {
             if (err)
