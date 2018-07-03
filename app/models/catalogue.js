@@ -21,7 +21,7 @@ module.exports = mongoose.model('Catalogue', {
         default: ''
     },
 
-	genealogy: {
+	gene: {
         type: String,
         default: ''
     }
