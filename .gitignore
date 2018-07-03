@@ -14,4 +14,4 @@ results
 npm-debug.log
 node_modules
 
-README.pdf # So I can read my readme easier
+*.pdf # So I can read my readme easier
