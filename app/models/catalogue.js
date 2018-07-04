@@ -11,7 +11,7 @@ module.exports = mongoose.model('Catalogue', {
         default: ''
     },
 
-	format: {
+	tags: {
         type: String,
         default: ''
     },
@@ -21,7 +21,7 @@ module.exports = mongoose.model('Catalogue', {
         default: ''
     },
 
-	gene: {
+	analysis: {
         type: String,
         default: ''
     }

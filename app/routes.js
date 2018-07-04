@@ -12,9 +12,10 @@ function getCatalogue(res) {
     });
 };
 
-module.exports = function (app) {
+module.exports = function(app) {
 
-    // api
+    // primary api
+
     // get all memes
     app.get('/api/memes', function (req, res) {
         // use mongoose to get all memes in the database
@@ -28,9 +29,9 @@ module.exports = function (app) {
         Catalogue.create({
             origin: req.body.origin,
             date: req.body.date,
-            format: req.body.format,
+            tags: req.body.tags,
             img_content: req.body.img_content,
-            gene: req.body.gene,
+            analysis: req.body.analysis,
             done: false
         }, function (err, meme) {
             if (err)
@@ -39,7 +40,6 @@ module.exports = function (app) {
             // get and return all the memes after you create another
             getCatalogue(res);
         });
-
     });
 
     // delete a meme

@@ -13,12 +13,12 @@ var methodOverride = require('method-override');
 mongoose.connect(database.localUrl);
 
 app.use(express.static('./public'));
+app.use('/taggle', express.static(__dirname + '/node_modules/taggle/src'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(methodOverride('X-HTTP-Method-Override'));
-
 
 // routes
 require('./app/routes.js')(app);
