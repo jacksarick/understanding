@@ -19,12 +19,11 @@
 		#meme-form 	 			{ margin-bottom:50px; }
 	</style>
 
-	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!--angular-->
 
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/catalogue.js"></script> <!-- load our meme service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+	<script src="js/controllers/main.js"></script> <!--controller-->
+	<script src="js/services/catalogue.js"></script> <!--catalogue-->
+	<script src="js/core.js"></script> <!--application-->
 
 </head>
 <!-- SET THE CONTROLLER -->
@@ -43,26 +42,23 @@
 		<!-- MEME LIST -->
 		<div id="meme-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-
-				
-
 				<!-- LOOP OVER THE MEMES IN $scope.memes -->
 				<table class="table">
 					<thead>
 						<td><input type="checkbox" disabled checked></td>
 						<td> Origin </td>
 						<td> Date </td>
-						<td> Format </td>
+						<td> Tags </td>
 						<td> Image Content </td>
-						<td> Genealogy </td>
+						<td> Analysis </td>
 					</thead>
 					<tr ng-repeat="meme in memes">
 						<td><input type="checkbox"></td>
 						<td> {{ meme.origin }} </td>
 						<td> {{ meme.date }} </td>
-						<td> {{ meme.format }} </td>
+						<td> {{ meme.tags }} </td>
 						<td> {{ meme.img_content }} </td>
-						<td> {{ meme.gene }} </td>
+						<td> {{ meme.analysis }} </td>
 					</tr>
 				</table>
 
@@ -77,8 +73,8 @@
 		<div class="box">
 			<article class="media">
 				<div class="media-left">
-					<figure class="image is-64x64">
-						<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+					<figure class="image is-256x256">
+						<img src="https://bulma.io/images/placeholders/256x256.png" alt="Image">
 					</figure>
 				</div>
 				<div class="media-content">
@@ -91,7 +87,7 @@
 								<input type="text" ng-model="formData.date" class="input is-info" placeholder="Date (approx.)">
 								<input type="text" ng-model="formData.format" class="input is-info" placeholder="Format (text post, panel, analysis, etc.)">
 								<input type="text" ng-model="formData.img_content" class="input is-info" placeholder="Image Content">
-								<input type="text" ng-model="formData.gene" class="input is-info" placeholder="Genealogy (eg. loss, twitter, political)">
+								<input type="text" ng-model="formData.analysis" class="input is-info" placeholder="Genealogy (eg. loss, twitter, political)">
 							</div>
 
 							<button type="submit" class="btn btn-primary btn-lg" ng-click="createMeme()">Add</button>
