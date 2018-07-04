@@ -10,4 +10,4 @@ Cataloguing memes by five main data points:
 - Content (the literal visual content of the image)
 - Genealogy (what is the history required to understand the meme?)
 
-Code originally based on (scotch.io tutorial)[http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular]
+Code originally based on [scotch.io tutorial](http://scotch.io/tutorials/javascript/creating-a-single-page-todo-app-with-node-and-angular)

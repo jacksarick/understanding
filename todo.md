@@ -1,0 +1,2 @@
+- [ ] File uploading
+- [ ] Make it suck less
