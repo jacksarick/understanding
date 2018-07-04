@@ -19,12 +19,12 @@
 		#meme-form 	 			{ margin-bottom:50px; }
 	</style>
 
-	<!-- SPELLS -->
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!--angular-->
 
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/catalogue.js"></script> <!-- load our meme service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+	<script src="js/controllers/main.js"></script> <!--controller-->
+	<script src="js/services/catalogue.js"></script> <!--catalogue-->
+	<script src="js/core.js"></script> <!--application-->
+	<script src="taggle/taggle.js"></script>
 
 </head>
 <!-- SET THE CONTROLLER -->
@@ -43,28 +43,33 @@
 		<!-- MEME LIST -->
 		<div id="meme-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
+				<div class="card" ng-repeat="meme in memes">
+					<div class="card-image">
+						<figure class="image is-4by3">
+							<img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+						</figure>
+					</div>
+					<div class="card-content">
+						<div class="media">
+							<div class="media-left">
+								<figure class="image is-48x48">
+									<img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+								</figure>
+							</div>
+							<div class="media-content">
+								<p class="title is-4">{{ meme.origin }}</p>
+							</div>
+						</div>
 
-				
+						<div class="content">
+							{{ meme.analysis }}
 
-				<!-- LOOP OVER THE MEMES IN $scope.memes -->
-				<table class="table">
-					<thead>
-						<td><input type="checkbox" disabled checked></td>
-						<td> Origin </td>
-						<td> Date </td>
-						<td> Format </td>
-						<td> Image Content </td>
-						<td> Genealogy </td>
-					</thead>
-					<tr ng-repeat="meme in memes">
-						<td><input type="checkbox"></td>
-						<td> {{ meme.origin }} </td>
-						<td> {{ meme.date }} </td>
-						<td> {{ meme.format }} </td>
-						<td> {{ meme.img_content }} </td>
-						<td> {{ meme.gene }} </td>
-					</tr>
-				</table>
+							<span class="tag" ng-repeat="tag in memes.tags"> {{tag}} </span>
+							<br>
+							<time>{{ meme.date }}</time>
+						</div>
+					</div>
+				</div>
 
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
@@ -77,8 +82,8 @@
 		<div class="box">
 			<article class="media">
 				<div class="media-left">
-					<figure class="image is-64x64">
-						<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+					<figure class="image is-256x256">
+						<img src="https://bulma.io/images/placeholders/256x256.png" alt="Image">
 					</figure>
 				</div>
 				<div class="media-content">
@@ -89,9 +94,9 @@
 								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 								<input type="text" ng-model="formData.origin" class="input is-info" placeholder="Origin (author, site, etc.)">
 								<input type="text" ng-model="formData.date" class="input is-info" placeholder="Date (approx.)">
-								<input type="text" ng-model="formData.format" class="input is-info" placeholder="Format (text post, panel, analysis, etc.)">
+								<input type="text" ng-model="formData.tags" class="input is-info" placeholder="Tags (text post, panel, analysis, loss, twitter, political)">
 								<input type="text" ng-model="formData.img_content" class="input is-info" placeholder="Image Content">
-								<input type="text" ng-model="formData.gene" class="input is-info" placeholder="Genealogy (eg. loss, twitter, political)">
+								<input type="textarea" ng-model="formData.analysis" class="input is-info" placeholder="Analysis">
 							</div>
 
 							<button type="submit" class="btn btn-primary btn-lg" ng-click="createMeme()">Add</button>
