@@ -24,6 +24,7 @@
 	<script src="js/controllers/main.js"></script> <!--controller-->
 	<script src="js/services/catalogue.js"></script> <!--catalogue-->
 	<script src="js/core.js"></script> <!--application-->
+
 </head>
 
 <!-- SET THE CONTROLLER -->
@@ -98,43 +99,49 @@
 					</div>
 					<div class="media-content">
 						<div class="content">
-							<!-- <div class="form-group"> -->
 
-								<!-- VALUE BOUND TO formData IN ANGULAR -->
-								<p class="control has-icons-left">
-									<label class="label">Origin</label>
-									<input type="text" id="origin_input" ng-model="formData.origin" class="input is-info" placeholder="author via site">
-									<span class="icon is-small is-left">
-										<i class="fas fa-at"></i>
-									</span>
-								</p>
+							<template id="form-input">
+								<div class="field">
+									<p class="control has-icons-left">
+										<label class="label" slot="label"><slot name="label">Label</slot></label>
+										<slot name="input"></slot>
+										<span class="icon is-large is-left">
+											<slot name="icon"></slot>
+										</span>
+									</p>
+								</div>
+							</template>
 
-								<p class="control has-icons-left">
-									<label class="label">Date</label>
-									<input type="date" id="date_input" ng-model="formData.date" class="input is-info">
-									<span class="icon is-small is-left">
-										<i class="fas fa-calendar-alt"></i>
-									</span>
-								</p>
+							<!-- VALUE BOUND TO formData IN ANGULAR -->
+							<form-input>
+								<span slot="label">Origin</span>
+								<input type="text" class="input" id="origin_input" slot="input" ng-model="formData.origin" placeholder="author via site">
+								<i class="fas fa-at" slot="icon"></i>
+							</form-input>
 
-								<p class="control has-icons-left">
-									<label class="label">Tags</label>
-									<input type="text" id="tag_input" ng-model="formData.tags" class="input is-info" placeholder="Tags (text post, panel, analysis, loss, twitter, political)">
-									<span class="icon is-small is-left">
-										<i class="fas fa-tags"></i>
-									</span>
-								</p>
+							<p class="control has-icons-left">
+								<label class="label">Date</label>
+								<input type="date" id="date_input" ng-model="formData.date" class="input is-info">
+								<span class="icon is-small is-left">
+									<i class="fas fa-calendar-alt"></i>
+								</span>
+							</p>
 
-								<p class="control has-icons-left">
-									<label class="label">Analysis</label>
-									<input type="text" id="analysis_input" ng-model="formData.analysis" class="input is-info" placeholder="Analysis and Commentary">
-									<span class="icon is-small is-left">
-										<i class="fas fa-object-group"></i>
-									</span>
-								</p>
-							<!-- </div> -->
+							<p class="control has-icons-left">
+								<label class="label">Tags</label>
+								<input type="text" id="tag_input" ng-model="formData.tags" class="input is-info" placeholder="Tags (text post, panel, analysis, loss, twitter, political)">
+								<span class="icon is-small is-left">
+									<i class="fas fa-tags"></i>
+								</span>
+							</p>
 
-							
+							<p class="control has-icons-left">
+								<label class="label">Analysis</label>
+								<input type="text" id="analysis_input" ng-model="formData.analysis" class="input is-info" placeholder="Analysis and Commentary">
+								<span class="icon is-small is-left">
+									<i class="fas fa-object-group"></i>
+								</span>
+							</p>
 						</div>
 					</div>
 				</article>
@@ -147,6 +154,7 @@
 
 	<script type="text/javascript">
 		window.onload = function(){
+			define_elements();
 			document.getElementById('date_input').valueAsDate = new Date();
 			preload();
 		}
@@ -155,6 +163,20 @@
 			document.getElementById('origin_input').value = "@spooky.miller via Instagram";
 			document.getElementById('tag_input').value = "juul, fortnite, selfie";
 			document.getElementById('analysis_input').value = "The combination of both the infamous Juul and the Fortnite '#1 Victory Royale' make for a doubly cringy image (This is the image I'm talking about https://www.instagram.com/p/Bk6ab4cn_hfO7PPZi4NHOBg2-8h2NHCoTgH_W00)";
+		}
+
+		define_elements = function(){
+			customElements.define('form-input',
+				class extends HTMLElement {
+					constructor() {
+						super();
+						let template = document.getElementById('form-input');
+						let templateContent = template.content;
+
+						const shadowRoot = this.attachShadow({mode: 'open'})
+							.appendChild(templateContent.cloneNode(true));
+				}
+			})
 		}
 	</script>
 </body>
