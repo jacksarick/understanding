@@ -1,4 +1,4 @@
-{
+r{
   "name": "understanding",
   "version": "0.0.1",
   "description": "An attempt to understand memes",
@@ -11,7 +11,6 @@
     "express": "^4.10.8",
     "method-override": "^2.3.10",
     "mongoose": "4.10.8",
-    "morgan": "^1.9.0",
-    "taggle": "^1.14.0"
+    "morgan": "^1.9.0"
   }
 }

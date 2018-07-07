@@ -4,16 +4,14 @@ var app = express();
 var mongoose = require('mongoose');
 var config = require('./config/config')
 var port = process.env.PORT || config.port || 8080;
-var database = require('./config/database');config
+var database = require('./config/database');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
 // configuration
 mongoose.connect(database.localUrl);
-
 app.use(express.static('./public'));
-app.use('/taggle', express.static(__dirname + '/node_modules/taggle/src'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
