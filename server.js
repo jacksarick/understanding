@@ -5,7 +5,7 @@ var config = require('./config/config.js')
 var port = process.env.PORT || config.port;
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient
+const MongoClient = require('mongodb').MongoClient;
 
 var db
 
