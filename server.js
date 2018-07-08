@@ -9,9 +9,9 @@ const MongoClient = require('mongodb').MongoClient
 
 var db
 
-MongoClient.connect(config.db_url, (err, database) => {
+MongoClient.connect(config.db.url, (err, client) => {
 	if (err) return console.log(err)
-	db = database
+	db = client.db(config.db.name);
 	app.listen(port, () => {
 		console.log("App listening on port " + port);
 	})
