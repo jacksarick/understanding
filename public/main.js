@@ -4,5 +4,19 @@ window.onload = function(){
 
 toggle_modal = function() {
 	console.log("toggle")
-	document.getElementById('creation-modal').classList.toggle("is-active");
+	$('#creation-modal').toggleClass("is-active");
+}
+
+partial_submit = function() {
+	$('#image-upload').submit(function(e){
+		e.preventDefault();
+		$.ajax({
+			url: '/upload',
+			type: 'post',
+			data: $('#image-upload').serialize(),
+			success: function(){
+				alert("File (probably) uploaded");
+			}
+		});
+	});
 }
