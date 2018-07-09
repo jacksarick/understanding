@@ -84,13 +84,13 @@
 					<div class="media-left">
 						<div class="file is-boxed is-primary">
 							<label class="file-label">
-								<input class="file-input" type="file" name="image">
+								<input class="file-input" type="file" name="image" disabled="">
 								<span class="file-cta">
 									<span class="file-icon">
 										<span class="fas fa-cloud-upload-alt fa-2x"></span>
 									</span>
 									<span class="file-label">
-										Choose a file…
+										Choose a file… [disabled]
 									</span>
 								</span>
 							</label>
@@ -98,7 +98,6 @@
 					</div>
 					<div class="media-content">
 						<div class="content">
-							<div class="form-group">
 
 								<!-- VALUE BOUND TO formData IN ANGULAR -->
 								<input type="text" class="input is-info" placeholder="Origin (author, site, etc.)">
@@ -111,6 +110,9 @@
 						</div>
 					</div>
 				</article>
+				<div class="control">
+					<button type="submit" class="button is-primary" ng-click="createMeme()">Add</button>
+				</div>
 			</form>
 		</div>
 	</div>
