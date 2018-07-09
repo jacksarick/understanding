@@ -1,0 +1,24 @@
+<div id="meme-list" class="row">
+	<div class="col-sm-4 col-sm-offset-4">
+
+		<% for(var i=0; i< memes.length; i++) {%>
+		<div class="card">
+			<div class="card-image">
+				<figure class="image is-square">
+					<img src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image">
+				</figure>
+			</div>
+			<div class="card-content">
+				<p class="title is-4"><%= memes[i].origin %></p>
+
+				<div class="content">
+					<%= memes[i].analysis %>
+					<p class="title is-6"><b>Tags:</b> <%= memes[i].tags %> </p>							
+					<time><%= memes[i].date %></time>
+				</div>
+			</div>
+		</div>
+		<% } %>
+
+	</div>
+</div>
