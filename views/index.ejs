@@ -19,12 +19,7 @@
 		#meme-form 	 			{ margin-bottom:50px; }
 	</style>
 
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!--angular-->
-
-	<script src="js/controllers/main.js"></script> <!--controller-->
-	<script src="js/services/catalogue.js"></script> <!--catalogue-->
-	<script src="js/core.js"></script> <!--application-->
-	<script src="js/taggle.js"></script>
+	<!-- <script src="js/taggle.js"></script> -->
 </head>
 
 <!-- SET THE CONTROLLER -->
@@ -35,15 +30,18 @@
 		<section class="hero">
 			<div class="hero-body">
 					<div class="container">
-					<h1 class="title">I understand <span class="icon has-text-info">{{ memes.length }}</span> memes</h1>
+					<h1 class="title">I understand <span class="icon has-text-info"><% memes.length %></span> memes</h1>
 				</div>
 			</div>
 		</section>
 
 		<!-- MEME LIST -->
+		
 		<div id="meme-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-				<div class="card" ng-repeat="meme in memes">
+
+				<% for(var i=0; i< memes.length; i++) {%>
+				<div class="card">
 					<div class="card-image">
 						<figure class="image is-square">
 							<img src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image">
@@ -57,19 +55,20 @@
 								</figure>
 							</div>
 							<div class="media-content">
-								<p class="title is-4">{{ meme.origin }}</p>
+								<p class="title is-4"><% memes[i].origin %></p>
 							</div>
 						</div>
 
 						<div class="content">
-							{{ meme.analysis }}
+							<% memes[i].analysis %>
 
-							<span class="tag" ng-repeat="tag in memes.tags"> {{tag}} </span>
+							<span class="tags"> <% memes[i].tags.join(", ") %> </span>
 							<br>
-							<time>{{ meme.date }}</time>
+							<time><% memes[i].date %></time>
 						</div>
 					</div>
 				</div>
+				<% } %>
 
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
@@ -80,7 +79,7 @@
 
 		<!-- FORM TO CREATE MEMES -->
 		<div class="box">
-			<form>
+			<form action="/memes" method="POST">
 				<article class="media">
 					<div class="media-left">
 						<div class="file is-boxed is-primary">
@@ -102,13 +101,13 @@
 							<div class="form-group">
 
 								<!-- VALUE BOUND TO formData IN ANGULAR -->
-								<input type="text" ng-model="formData.origin" class="input is-info" placeholder="Origin (author, site, etc.)">
-								<input type="date" id="date_input" ng-model="formData.date" class="input is-info">
-								<input ng-model="formData.tags" placeholder="Tags (text post, panel, analysis, loss, twitter, political)" class="input is-info">
-								<input type="textarea" ng-model="formData.analysis" class="input is-info" placeholder="Analysis and Commentary">
+								<input type="text" class="input is-info" placeholder="Origin (author, site, etc.)">
+								<input type="date" id="date_input" class="input is-info">
+								<input placeholder="Tags (text post, panel, analysis, loss, twitter, political)" class="input is-info">
+								<input type="textarea" class="input is-info" placeholder="Analysis and Commentary">
 							</div>
 
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="createMeme()">Add</button>
+							<button type="submit" class="btn btn-primary btn-lg">Add</button>
 						</div>
 					</div>
 				</article>
@@ -116,10 +115,6 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
-		window.onload = function(){
-			document.getElementById('date_input').valueAsDate = new Date();
-		}
-	</script>
+	<script src="main.js"></script>
 </body>
 </html>
