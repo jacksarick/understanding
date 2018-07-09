@@ -1,122 +1,47 @@
 <!doctype html>
 
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="archive">
-<head>
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+<html>
+	<head>
+		<!-- META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Understanding memes</title>
+		<title>Understanding memes</title>
 
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"><!-- load bulma -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> <!-- font awesome -->
-	<style>
-		html 					{ overflow-y:scroll; }
-		body 					{ padding-top:50px; }
-		#meme-list 				{ margin-bottom:30px; }
-		#meme-form 	 			{ margin-bottom:50px; }
-	</style>
+		<!-- SCROLLS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"><!-- load bulma -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> <!-- font awesome -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- jquery -->
 
-	<script src="main.js"></script>
-</head>
+		<style>
+			html 					{ overflow-y:scroll; }
+			body 					{ padding-top:50px; }
+			#meme-list 				{ margin-bottom:30px; }
+			#meme-form 	 			{ margin-bottom:50px; }
+		</style>
 
-<!-- SET THE CONTROLLER -->
-<body ng-controller="mainController">
-	<div class="container is-three-quarters">
+		<script src="main.js"></script>
+	</head>
 
-		<!-- HEADER AND MEME COUNT -->
-		<%- include('top-bar') -%>
+	<!-- SET THE CONTROLLER -->
+	<body ng-controller="mainController">
+		<div class="container is-three-quarters">
 
-		<!-- MEME LIST -->
-		<div id="meme-list" class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<!-- HEADER AND MEME COUNT -->
+			<%- include('top-bar') -%>
 
-				<% for(var i=0; i< memes.length; i++) {%>
-				<div class="card">
-					<div class="card-image">
-						<figure class="image is-square">
-							<img src="https://bulma.io/images/placeholders/256x256.png" alt="Placeholder image">
-						</figure>
+			<!-- MEME LIST -->
+			<%- include('gallery') -%>
+
+			<!-- CREATION MODAL -->
+			<div class="modal is-active" id="creation-modal">
+				<div class="modal-background"></div>
+					<div class="modal-content">
+						<!-- CREATION FORM -->
+						<%- include('upload-form') -%>
 					</div>
-					<div class="card-content">
-						<p class="title is-4"><%= memes[i].origin %></p>
-
-						<div class="content">
-							<%= memes[i].analysis %>
-							<p class="title is-6"><b>Tags:</b> <%= memes[i].tags %> </p>							
-							<time><%= memes[i].date %></time>
-						</div>
-					</div>
-				</div>
-				<% } %>
-
+				<button class="modal-close is-large" aria-label="close" onclick="toggle_modal()"></button>
 			</div>
 		</div>
-
-		<!-- CREATION MODAL -->
-		<div class="modal" id="creation-modal">
-			<div class="modal-background"></div>
-				<div class="modal-content">
-					<!-- CREATION BOX -->
-					<div class="box">
-						<form action="/memes" method="POST">
-							<article class="media columns">
-
-								<div class="column media-left field is-grouped is-grouped-multiline is-grouped-centered">
-
-									<div class="control file is-boxed is-primary">
-										<label class="file-label">
-											<input class="file-input" type="file" name="image">
-											<span class="file-cta">
-												<span class="file-icon">
-													<span class="fas fa-cloud-upload-alt fa-2x"></span>
-												</span>
-												<span class="file-label">
-													Choose a file…
-												</span>
-											</span>
-										</label>
-									</div>
-
-									<br>
-
-									<div class="control">
-										<button type="submit" class="button is-large is-primary">Add</button>
-									</div>
-								</div>
-
-								<div class="column media-content">
-									<div class="content">
-
-										<!-- actual form input -->
-										<div class="field is-grouped is-grouped-multiline ">
-											<div class="control is-expanded">
-												<input type="text" class="input is-info" placeholder="Origin (author, site, etc.)">
-											</div>
-											
-											<div class="control is-expanded">
-												<input type="date" id="date_input" class="input is-info">
-											</div>
-
-											<div class="control is-expanded">
-												<input placeholder="Tags (text post, panel, analysis, loss, twitter, political)" class="input is-info">
-											</div>
-
-											<div class="control is-expanded">	
-												<input type="text" class="input is-info" placeholder="Analysis and Commentary">
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</article>
-						</form>
-					</div>
-				</div>
-			<button class="modal-close is-large" aria-label="close" onclick="toggle_modal()"></button>
-		</div>
-	</div>
-</body>
+	</body>
 </html>
