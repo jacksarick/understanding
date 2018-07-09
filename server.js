@@ -8,8 +8,8 @@ const port     = process.env.PORT || config.port;
 
 // set up the grid filesystem
 var fs = require('fs');
+var multer = require('multer');
 var dirname = require('path').dirname(__dirname);
-var read_stream = fs.createReadStream(dirname + '/' + path);
 var Grid = require("gridfs-stream");
 var gridfs;
 
@@ -22,7 +22,7 @@ MongoClient.connect(config.db.url, (err, client) => {
 	if (err) return console.log(err);
 
 	db = client.db(config.db.name);
-	gridfs = Grid(db, mongo);
+	gridfs = Grid(client.db(config.db.fs_name), mongo);
 
 	app.listen(port, () => {
 		console.log("App listening on port " + port);
@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use('/uploads', express.static(__dirname +'/images'));
-app.use(multer({dest: './images/'}));
+app.use(multer({dest: './images/'}).any());
 
 // route requests around
 app.get('/', (req, res) => {
@@ -62,6 +62,7 @@ app.all('/upload', (req ,res) => {
 		filename: filename
 	});
 
+	var read_stream = fs.createReadStream(dirname + '/' + path);
 	read_stream.pipe(writestream);
 });
 
