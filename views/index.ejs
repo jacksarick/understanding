@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Meme App</title>
+	<title>Understanding memes</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"><!-- load bulma -->
@@ -19,7 +19,7 @@
 		#meme-form 	 			{ margin-bottom:50px; }
 	</style>
 
-	<!-- <script src="js/taggle.js"></script> -->
+	<script src="main.js"></script>
 </head>
 
 <!-- SET THE CONTROLLER -->
@@ -27,16 +27,24 @@
 	<div class="container is-three-quarters">
 
 		<!-- HEADER AND MEME COUNT -->
-		<section class="hero">
-			<div class="hero-body">
-					<div class="container">
-					<h1 class="title">I understand <span class="icon has-text-info"><% memes.length %></span> memes</h1>
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+  			<div class="navbar-brand">
+				<h1 class="title">I understand <span class="icon has-text-info"><%= memes.length %></span> memes</h1>
+			</div>
+
+			 <div class="navbar-end">
+				<div class="navbar-item">
+					<a class="button is-large is-primary" onclick="toggle_modal()">
+						<span class="icon">
+							<i class="fas fa-plus-circle"></i>
+						</span>
+						<span>Add meme</span>
+					</a>
 				</div>
 			</div>
-		</section>
+		</nav>
 
 		<!-- MEME LIST -->
-		
 		<div id="meme-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
@@ -48,73 +56,82 @@
 						</figure>
 					</div>
 					<div class="card-content">
-						<div class="media">
-							<div class="media-left">
-								<figure class="image is-48x48">
-									<img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-								</figure>
-							</div>
-							<div class="media-content">
-								<p class="title is-4"><% memes[i].origin %></p>
-							</div>
-						</div>
+						<p class="title is-4"><%= memes[i].origin %></p>
 
 						<div class="content">
-							<% memes[i].analysis %>
-
-							<span class="tags"> <% memes[i].tags %> </span>
-							<br>
-							<time><% memes[i].date %></time>
+							<%= memes[i].analysis %>
+							<p class="title is-6"><b>Tags:</b> <%= memes[i].tags %> </p>							
+							<time><%= memes[i].date %></time>
 						</div>
 					</div>
 				</div>
 				<% } %>
 
-				<p class="text-center" ng-show="loading">
-					<span class="fa fa-spinner fa-spin fa-3x"></span>
-				</p>
-
 			</div>
 		</div>
 
-		<!-- FORM TO CREATE MEMES -->
-		<div class="box">
-			<form action="/memes" method="POST">
-				<article class="media">
-					<div class="media-left">
-						<div class="file is-boxed is-primary">
-							<label class="file-label">
-								<input class="file-input" type="file" name="image">
-								<span class="file-cta">
-									<span class="file-icon">
-										<span class="fas fa-cloud-upload-alt fa-2x"></span>
-									</span>
-									<span class="file-label">
-										Choose a file…
-									</span>
-								</span>
-							</label>
-						</div>
-					</div>
-					<div class="media-content">
-						<div class="content">
-							<div class="form-group">
+		<!-- CREATION MODAL -->
+		<div class="modal" id="creation-modal">
+			<div class="modal-background"></div>
+				<div class="modal-content">
+					<!-- CREATION BOX -->
+					<div class="box">
+						<form action="/memes" method="POST">
+							<article class="media columns">
 
-								<!-- VALUE BOUND TO formData IN ANGULAR -->
-								<input type="text" class="input is-info" placeholder="Origin (author, site, etc.)">
-								<input type="date" id="date_input" class="input is-info">
-								<input placeholder="Tags (text post, panel, analysis, loss, twitter, political)" class="input is-info">
-								<input type="textarea" class="input is-info" placeholder="Analysis and Commentary">
-							</div>
+								<div class="column media-left field is-grouped is-grouped-multiline is-grouped-centered">
 
-							<button type="submit" class="btn btn-primary btn-lg">Add</button>
-						</div>
+									<div class="control file is-boxed is-primary">
+										<label class="file-label">
+											<input class="file-input" type="file" name="image">
+											<span class="file-cta">
+												<span class="file-icon">
+													<span class="fas fa-cloud-upload-alt fa-2x"></span>
+												</span>
+												<span class="file-label">
+													Choose a file…
+												</span>
+											</span>
+										</label>
+									</div>
+
+									<br>
+
+									<div class="control">
+										<button type="submit" class="button is-large is-primary">Add</button>
+									</div>
+								</div>
+
+								<div class="column media-content">
+									<div class="content">
+
+										<!-- actual form input -->
+										<div class="field is-grouped is-grouped-multiline ">
+											<div class="control is-expanded">
+												<input type="text" class="input is-info" placeholder="Origin (author, site, etc.)">
+											</div>
+											
+											<div class="control is-expanded">
+												<input type="date" id="date_input" class="input is-info">
+											</div>
+
+											<div class="control is-expanded">
+												<input placeholder="Tags (text post, panel, analysis, loss, twitter, political)" class="input is-info">
+											</div>
+
+											<div class="control is-expanded">	
+												<input type="text" class="input is-info" placeholder="Analysis and Commentary">
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</article>
+						</form>
 					</div>
-				</article>
-			</form>
+				</div>
+			<button class="modal-close is-large" aria-label="close" onclick="toggle_modal()"></button>
 		</div>
 	</div>
-
-	<script src="main.js"></script>
 </body>
 </html>
