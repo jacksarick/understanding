@@ -9,7 +9,6 @@ const port     = process.env.PORT || config.port;
 // set up the grid filesystem
 var fs = require('fs');
 var dirname = require('path').dirname(__dirname);
-var read_stream = fs.createReadStream(dirname + '/' + path);
 var Grid = require("gridfs-stream");
 var gridfs;
 
@@ -62,6 +61,7 @@ app.all('/upload', (req ,res) => {
 		filename: filename
 	});
 
+	var read_stream = fs.createReadStream(dirname + '/' + path);
 	read_stream.pipe(writestream);
 });
 
