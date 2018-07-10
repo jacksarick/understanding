@@ -1,14 +1,14 @@
 <div class="box">
 	<article class="media columns">
-		<form id="image-upload" class="column media-left field is-grouped is-grouped-multiline is-grouped-centered">
+		<form id="image-upload" class="column media-left field is-grouped is-grouped-multiline is-grouped-centered" enctype='multipart/form-data'>
 			<div class="control file is-boxed is-info">
 				<label class="file-label">
-					<input class="file-input" type="file" name="image">
+					<input class="file-input" type="file" name="image" id="file-upload">
 					<span class="file-cta">
 						<span class="file-icon">
 							<span class="fas fa-cloud-upload-alt fa-2x"></span>
 						</span>
-						<span class="file-label">
+						<span class="file-label" id="file-label">
 							Choose a file…
 						</span>
 					</span>
