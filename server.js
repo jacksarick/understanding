@@ -53,10 +53,7 @@ app.post('/memes', (req, res) => {
 	})
 })
 
-app.post('/upload', (req ,res) => {
-	console.log("-----[");
-	console.log(req.files);
-	console.log("]-----");
+app.all('/upload', (req ,res) => {
 	var filename = req.files.file.name;
 	var path = req.files.file.path;
 	var type = req.files.file.mimetype;
